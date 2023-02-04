@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>Online Streaming</title>
+</head>
+<body>
+	<!-- th:fragment 다른 페이지에 포함시킬 영역을 만들어 준다. -->
+	<div th:fragment="header">
+		<!-- Header Start  -->
+    		<header class="header header-sticky">
+      			<nav class="nav">
+			        <div class="container">
+			          <!-- Header Wrap Start  -->
+			          <div class="header__wrapper">
+			            <div class="header__logo">
+			              <a href="/"
+			                ><img src="/images/logo.png" alt="logo" />
+			              </a>
+			            </div>
+			            <div class="header__menu">
+			              <ul class="main__menu">
+			                <li class="active"><a href="/">HOME</a></li>
+			                <li><a href="/streaming">STREAMING </a></li>
+			                <li><a href="/membership">MEMBERSHIP</a></li>
+			                <li><a href="/contents">CONTENTS</a></li>
+			              </ul>
+			            </div>
+			            <div class="header__meta">
+			              <ul class="meta__item">
+			                <li>
+			                  <a href="/members/login" class="btn btn-primary" sec:authorize="isAnonymous()">로그인</a>
+			                </li>
+			                <li>
+			                  <a href="/members/logout" class="btn btn-primary" sec:authorize="isAuthenticated()">로그아웃</a>
+			                </li>
+			              </ul>
+			            </div>
+			          </div>
+			          <!-- Header Wrap End  -->
+			        </div>
+		      	</nav>
+    		</header>
+    <!-- Header End -->
+	</div>
+</body>
+</html>

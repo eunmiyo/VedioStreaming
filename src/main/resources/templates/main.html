@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout1}">
+<head>
+<meta charset="UTF-8">
+<title>Online Streaming</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<!-- Banner Section Start -->
+    <section class="banner__section">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="hero__text">
+              <h1 class="hero__title">Unlimited <span>Movie</span></h1>
+              <ul class="hero__meta">
+                <li>
+                  <span class="quality">HD</span>
+                  <span>Romance, drama</span>
+                </li>
+                <li>
+                  <img src="/images/calender.png" alt="calender" />18 MAY
+                  2022
+                </li>
+                <li>
+                  <img src="/images/clock.png" alt="clock" /> 128 min
+                </li>
+              </ul>
+              <div class="hero__btn">
+                <a
+                  data-fancybox=""
+                  data-width="640"
+                  data-height="360"
+                  data-small-btn="true"
+                  class="btn btn-outline"
+                  href="https://www.youtube.com/watch?v=tv7LfFeamsc"
+                  >Watch now
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Banner Section End -->
+    
+    <!-- Movies Section Start -->
+    <section class="movies__section bg-color">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="section-title__wrapper">
+              <div class="section-title">
+                <h4 class="sub-title">Online Streaming</h4>
+                <h2 class="main-title">Upcoming Movies</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <div class="tab-content" id="myTabContent">
+              <div
+                class="tab-pane fade show active"
+                id="tvShow-tab-pane"
+                role="tabpanel"
+                aria-labelledby="tvShow-tab"
+                tabindex="0"
+              >
+                <div class="content__body">
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
+                      <div class="Mcard__inner">
+                        <div class="movie-card__wrapper">
+                          <a href="movie-single.html" class="card__image">
+                            <img
+                              src="/images/m-image-01.jpg"
+                              alt="movie-img"
+                            />
+                          </a>
+
+                          <div class="card__content">
+                            <div class="year">2022</div>
+                            <h4 class="card__title">
+                              <a href="#">avengers endgame</a>
+                            </h4>
+                            <div class="card__action">
+                              <ul>
+                                <li>
+                                  <a href="#">
+                                    <img
+                                      src="/images/heart.png"
+                                      alt="heart"
+                                    />
+                                    1.5k</a
+                                  >
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+
+                          <div class="card__content--bottom">
+                            <div class="duration">
+                              <span class="quality">hD</span>
+                              <img src="/images/add.png" alt="add" />
+                            </div>
+                            <div class="duration">
+                              <img class="clock_img" src="/images/clock.png" alt="clock" />
+                              128 min
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
+                  <div class="Mcard__inner">
+                    <div class="movie-card__wrapper">
+                      <a href="movie-single.html" class="card__image">
+                        <img
+                          src="/images/m-image-01.jpg"
+                          alt="movie-img"
+                        />
+                      </a>
+                      <div class="card__content">
+                        <div class="year">2022</div>
+                        <h4 class="card__title">
+                          <a href="#">avengers endgame</a>
+                        </h4>
+                        <div class="card__action">
+                          <ul>
+                            <li>
+                              <a href="#">
+                                <img
+                                  src="/images/heart.png"
+                                  alt="heart"
+                                />
+                                1.5k</a
+                              >
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                      <div class="card__content--bottom">
+                        <div class="duration">
+                          <span class="quality">hD</span>
+                          <img src="/images/add.png" alt="add" />
+                        </div>
+                        <div class="duration">
+                          <img class="clock_img" src="/images/clock.png" alt="clock" />
+                          128 min
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
+                  <div class="Mcard__inner">
+                    <div class="movie-card__wrapper">
+                      <a href="movie-single.html" class="card__image">
+                        <img
+                          src="/images/m-image-01.jpg"
+                          alt="movie-img"
+                        />
+                      </a>
+                      <div class="card__content">
+                        <div class="year">2022</div>
+                        <h4 class="card__title">
+                          <a href="#">avengers endgame</a>
+                        </h4>
+                        <div class="card__action">
+                          <ul>
+                            <li>
+                              <a href="#">
+                                <img
+                                  src="/images/heart.png"
+                                  alt="heart"
+                                />
+                                1.5k</a
+                              >
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                      <div class="card__content--bottom">
+                        <div class="duration">
+                          <span class="quality">hD</span>
+                          <img src="/images/add.png" alt="add" />
+                        </div>
+                        <div class="duration">
+                          <img class="clock_img" src="/images/clock.png" alt="clock" />
+                          128 min
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
+                  <div class="Mcard__inner">
+                    <div class="movie-card__wrapper">
+                      <a href="movie-single.html" class="card__image">
+                        <img
+                          src="/images/m-image-01.jpg"
+                          alt="movie-img"
+                        />
+                      </a>
+                      <div class="card__content">
+                        <div class="year">2022</div>
+                        <h4 class="card__title">
+                          <a href="#">avengers endgame</a>
+                        </h4>
+                        <div class="card__action">
+                          <ul>
+                            <li>
+                              <a href="#">
+                                <img
+                                  src="/images/heart.png"
+                                  alt="heart"
+                                />
+                                1.5k</a
+                              >
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                      <div class="card__content--bottom">
+                        <div class="duration">
+                          <span class="quality">hD</span>
+                          <img src="/images/add.png" alt="add" />
+                        </div>
+                        <div class="duration">
+                          <img class="clock_img" src="/images/clock.png" alt="clock" />
+                          128 min
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Movies Section End -->
+
+    <!-- Online Show Section Start -->
+    <section class="onlineShow__section bg-color">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="section-title text-center">
+              <h4 class="sub-title">online Streaming</h4>
+              <h2 class="main-title">Watch Shows Online</h2>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4 col-md-4 col-sm-6">
+            <div class="onlineShow__card">
+              <div class="onlineShow__thumb">
+                <img src="/images/m-show-01.jpg" alt="onlineShow-show" />
+              </div>
+              <div class="onlineShow__overlay text-center">
+                <figure class="video-box">
+                  <a
+                    data-fancybox=""
+                    data-width="640"
+                    data-height="360"
+                    data-small-btn="true"
+                    class="video-btn"
+                    href="https://www.youtube.com/watch?v=tv7LfFeamsc"
+                  >
+                    <img
+                      src="/images/play-button.png"
+                      alt="play-button"
+                    />
+                  </a>
+                </figure>
+                <div class="onlineShow__content">
+                  <a href="#" class="action__btn btn btn-primary">Action</a>
+                  <h4 class="onlineShow__title">Stories Of The Dark</h4>
+                  <div class="release">5 Seasons - 2017</div>
+                </div>
+                <div class="card__action">
+                  <ul>
+                    <li>
+                      <img src="/images/heart.png" alt="heart" />
+                    </li>
+                    <li>
+                      <img src="/images/add.png" alt="add" />
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-6">
+            <div class="onlineShow__card">
+              <div class="onlineShow__thumb">
+                <img src="/images/m-show-02.jpg" alt="onlineShow-show" />
+              </div>
+              <div class="onlineShow__overlay text-center">
+                <figure class="video-box">
+                  <a
+                    data-fancybox=""
+                    data-width="640"
+                    data-height="360"
+                    data-small-btn="true"
+                    class="video-btn"
+                    href="https://www.youtube.com/watch?v=tv7LfFeamsc"
+                  >
+                    <img
+                      src="/images/play-button.png"
+                      alt="play-button"
+                    />
+                  </a>
+                </figure>
+                <div class="onlineShow__content">
+                  <a href="#" class="action__btn btn btn-primary">Action</a>
+                  <h4 class="onlineShow__title">Stories Of The Dark</h4>
+                  <div class="release">5 Seasons - 2017</div>
+                </div>
+                <div class="card__action">
+                  <ul>
+                    <li>
+                      <img src="/images/heart.png" alt="heart" />
+                    </li>
+                    <li>
+                      <img src="/images/add.png" alt="add" />
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-6">
+            <div class="onlineShow__card">
+              <div class="onlineShow__thumb">
+                <img src="/images/m-show-03.jpg" alt="onlineShow-show" />
+              </div>
+              <div class="onlineShow__overlay text-center">
+                <figure class="video-box">
+                  <a
+                    data-fancybox=""
+                    data-width="640"
+                    data-height="360"
+                    data-small-btn="true"
+                    class="video-btn"
+                    href="https://www.youtube.com/watch?v=tv7LfFeamsc"
+                  >
+                    <img
+                      src="/images/play-button.png"
+                      alt="play-button"
+                    />
+                  </a>
+                </figure>
+                <div class="onlineShow__content">
+                  <a href="#" class="action__btn btn btn-primary">Action</a>
+                  <h4 class="onlineShow__title">Stories Of The Dark</h4>
+                  <div class="release">5 Seasons - 2017</div>
+                </div>
+                <div class="card__action">
+                  <ul>
+                    <li>
+                      <img src="/images/heart.png" alt="heart" />
+                    </li>
+                    <li>
+                      <img src="/images/add.png" alt="add" />
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Online Show Section End -->
+	</div>
+</body>
+</html>
