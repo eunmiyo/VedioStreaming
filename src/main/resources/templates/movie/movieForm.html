@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layouts/layout2}">
+      layout:decorate="~{layouts/layout1}">
 <head>
 <meta charset="UTF-8">
 <title>Online Streaming</title>
@@ -15,74 +15,176 @@
 			if(errorMessage != null) {
 				alert(errorMessage);
 			}
+			bindDomEvent();
 		});
+		
+		//파일 첨부시 이미지 파일인지 검사를 한다.
+		function bindDomEvent(){
+            $(".custom-file-input").on("change", function() {
+                var fileName = $(this).val().split("\\").pop();  //이미지 파일명
+                var fileExt = fileName.substring(fileName.lastIndexOf(".")+1); // 확장자 추출
+                fileExt = fileExt.toLowerCase(); //소문자 변환
+
+                if(fileExt != "jpg" && fileExt != "jpeg" && fileExt != "gif" && fileExt != "png" && fileExt != "bmp"){
+                    alert("이미지 파일만 등록이 가능합니다.");
+                    return;
+                }
+
+                $(this).siblings(".custom-file-label").html(fileName);
+            });
+        }
 	</script>
+	
+	<script type="text/javascript">
+$(document).ready(function(){
+	$("#imgFileUp").on('change', function(){  // 값이 변경되면
+		if(window.FileReader){  // modern browser
+			var filename = $(this)[0].files[0].name;
+		} else {  // old IE
+ 			var filename = $(this).val().split('/').pop().split('\\').pop();  // 파일명만 추출
+		}
+
+ 		// 추출한 파일명 삽입
+		$("#imgfileName").val(filename);
+	});
+	
+	$("#videoFileUp").on('change', function(){  // 값이 변경되면
+		if(window.FileReader){  // modern browser
+			var filename = $(this)[0].files[0].name;
+		} else {  // old IE
+ 			var filename = $(this).val().split('/').pop().split('\\').pop();  // 파일명만 추출
+		}
+
+ 		// 추출한 파일명 삽입
+		$("#videofileName").val(filename);
+	});
+	
+});
+</script>
+</th:block>
+
+<!-- 각 페이지에 css가 작성될 위치 -->
+<th:block layout:fragment="css">
+	<style>
+		.fieldError {
+		color: #bd2130;
+		}
+		.input-group {
+            margin-bottom : 15px
+        }
+        .img-div {
+            margin-bottom : 10px
+        }
+        .fieldError {
+            color: #bd2130;
+        }
+	</style>
 </th:block>
 
 </head>
 <body>
 	<div layout:fragment="content">
-		<section class="fullPage-section p-0 bg-color">
-      <div class="full-page__wrapper">
-        <div class="full-page__image">
-          <div class="full-page__logo">
-            <a href="/"
-              ><img src="/images/logo.png" alt="logo"
-            /></a>
-          </div>
-          <img src="/images/comming-soon.jpg" alt="comming-soon" />
-          <div class="contact__overlay">
-            <div class="contact__info">
-              <h2 class="section__title">영화 올리기!</h2>
-            </div>
-          </div>
-        </div>
-        <div class="full-page__inner">
-          <div class="full-page__content">
-            <div class="full-page__logo d-md-none d-bock">
-              <a href="/"
-                ><img src="/images/logo.png" alt="logo"
-              /></a>
-            </div>
-            <div class="form__inner">
-              <form class="form__wrapper p-0" method="post" enctype="multipart/form-data" th:object="${}">
-                <h2 class="popup__title">Login</h2>
+		
+		<section class="movies__section bg-color">
+      <div class="container">
+      	<div class="form__inner">
+              <form method="post" action="/upload" enctype="multipart/form-data" class="form__wrapper p-0" th:object="${movieFormDto}">
+                  <div class="section-title">
+                <h2 class="main-title">영화등록</h2>
+                <input type="hidden" th:field="*{id}">
+              </div>
                 <div class="form-group">
-                  <label for="email">Email</label>
+                  <label for="title">제목</label>
                   <input
-                    type="email"
-                    name="email"
-                    id="email"
+                    type="text"
+                    name="title"
+                    id="title"
+                    th:field="*{title}"
                     class="form-control"
                     required=""
-                    data-error="Please enter email"
-                    placeholder="Enter your email"
+                    data-error="Please enter title"
+                    placeholder="Enter your title"
+                  />
+                </div>
+                 <div class="form-group">
+                  <label for="category">장르</label>
+                  <input
+                    type="text"
+                    name="category"
+                    id="category"
+                    th:field="*{category}"
+                    class="form-control"
+                    required=""
+                    data-error="Please enter category"
+                    placeholder="Enter your category"
                   />
                 </div>
                 <div class="form-group">
-                  <label for="password">Password</label>
+                  <label for="openDate">개봉날짜</label>
                   <input
-                    type="password"
-                    name="password"
-                    id="password"
+                    type="text"
+                    name="openDate"
+                    id="openDate"
+                    th:field="*{openDate}"
                     class="form-control"
                     required=""
-                    data-error="Please enter password"
-                    placeholder="Password"
+                    data-error="Please enter openDate"
+                    placeholder="Enter your openDate"
                   />
                 </div>
+                <div class="form-group">
+                  <label for="story">줄거리</label>
+                  <div class="col-12">
+                    <div class="form-group">
+                      <textarea
+                        name="story"
+                    	th:field="*{story}"
+                        cols="30"
+                        rows="5"
+                        class="form-control"
+                        placeholder="Enter your story"
+                        spellcheck="false"
+                      ></textarea>
+                    </div>
+                  </div>
+                </div>
+                
+				 <!-- 파일등록 -->
+				 
+  				 <div class="form-group" style="margin: 8px 0 8px;">				
+				<input id="videofileName" class="form-control" value="파일선택" style="width:85%; display: inline;">
+			
+						<div class="fileRegiBtn">
+							<label for="videoFileUp">파일선택</label>
+							<input type="file" id="videoFileUp" name="videoFile">
+						</div>				
+				</div>	
+						
+				<div class="form-group" style="margin: 8px 0 8px;">				
+				<input id="imgfileName" class="form-control" value="파일선택" style="width:85%; display: inline;">
+			
+						<div class="fileRegiBtn">
+							<label for="imgFileUp">파일선택</label>
+							<input type="file" id="imgFileUp" name="imgFile">	
+						</div>				
+				</div>
+				<!-- 커버이미지 들어오는 부분 (임시로 이미지를 넣어줬다)-->
+				
+				<div class="selectCover" style=" padding-left: 0;">		
+				 	<img id="cover" src="/images/comming-soon.jpg" style="width: 182px; height: 268px;"/>				
+				 </div>   
+				           
                 <div class="submit__btn">
                   <button type="submit" class="btn btn-primary mt-0 w-100">
-                    업로드하기
+                    등록하기
                   </button>
-
+                </div>
+                
               </form>
             </div>
-          </div>
-        </div>
       </div>
-    </section>
-    <!-- Contact Page End -->
+      </section>
 	</div>
 </body>
 </html>
+

@@ -40,9 +40,15 @@ public class MovieImg extends BaseEntity {
 	private Movie movie;
 	
 	//원본이미지 파일명, 업데이트 할 이미지 파일명, 이미지 경로를 파라메타로 받아서 이미지 정보를 업데이트하는 메소드
-	public void updateItemImg(String oriImgName, String imgName, String imgUrl) {
+	public void updateMovieImg(String oriImgName, String imgName, String imgUrl) {
 		this.oriImgName = oriImgName;
 		this.imgName = imgName;
 		this.imgUrl = imgUrl;
+	}
+	
+	public void updateMovieVideo(String videoName, String orivideoName, String videoUrl) {
+		this.videoName = videoName;
+		this.orivideoName = orivideoName;
+		this.videoUrl = videoUrl;
 	}
 }

@@ -32,10 +32,18 @@ public class SecurityConfig {
 			.logoutRequestMatcher(new AntPathRequestMatcher("/members/logout")) //로그아웃 url
 			.logoutSuccessUrl("/"); //로그아웃 성공시 이동할 url
 		
+		/**
+		 * org.springframework.security.spring-security-test 라이브러리 사용 시
+		 * post 방식 호출 시 에러 발생 (status : 401, 403)
+		 * 아래 옵션을 사용하여 csrf(Cross-Site Request Forgery) 비활성화
+		 * 참조 사이트 : https://sedangdang.tistory.com/303
+		 */
+		http.csrf().disable();
+		
 		//페이지의 접근에 관한 설정
 		http.authorizeRequests()
 		    .mvcMatchers("/css/**", "/js/**", "/img/**").permitAll()
-		    .mvcMatchers("/", "/streaming", "/membership", "/members/**", "/images/**").permitAll() //모든 사용자가 로그인(인증) 없이 접근할 수 있도록 설정
+		    .mvcMatchers("/", "/streaming", "/contact", "/upload", "/members/**", "/images/**").permitAll() //모든 사용자가 로그인(인증) 없이 접근할 수 있도록 설정
 		    .mvcMatchers("/admin/**").hasRole("ADMIN") // '/admin' 으로 시작하는 경로는 계정이 ADMIN role일 경우에만 접근 가능하도록 설정
 		    .anyRequest().authenticated(); //그 외에 페이지는 모두 로그인(인증)을 받아야 한다.
 		

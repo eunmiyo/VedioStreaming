@@ -1,7 +1,7 @@
 (function ($) {
-    "use strict";
+  "use strict";
 
-    /*********************************
+  /*********************************
     /* Table of Context
     �߶�ģ�壺http://www.bootstrapmb.com
     /* *******************************
@@ -23,80 +23,75 @@
 
     *********************************/
 
-    /*********************************
+  /*********************************
     /* Preloader Start
     *********************************/
-    $(window).on("load", function () {
-        $("#status").fadeOut();
-        $("#preloader").delay(500).fadeOut("slow");
-        $("body").delay(500).css({ overflow: "visible" });
-    });
+  $(window).on("load", function () {
+    $("#status").fadeOut();
+    $("#preloader").delay(500).fadeOut("slow");
+    $("body").delay(500).css({ overflow: "visible" });
+  });
 
-    /*********************************
+  /*********************************
     /* Sticky Navbar
     *********************************/
-    $(window).scroll(function () {
-        var scrolling = $(this).scrollTop();
-        var stikey = $(".header-sticky");
+  $(window).scroll(function () {
+    var scrolling = $(this).scrollTop();
+    var stikey = $(".header-sticky");
 
-        if (scrolling >= 50) {
-            $(stikey).addClass("nav-bg");
-        } else {
-            $(stikey).removeClass("nav-bg");
-        }
-    });
+    if (scrolling >= 50) {
+      $(stikey).addClass("nav-bg");
+    } else {
+      $(stikey).removeClass("nav-bg");
+    }
+  });
 
-    /*********************************
+  /*********************************
     /*  Mobile Menu Flyout Menu
     *********************************/
-    $(".toggler__btn").on("click", function (event) {
-        event.preventDefault();
-        $(".flyoutMenu").toggleClass("active");
-    });
-    $(".closest__btn").on("click", function (event) {
-        event.preventDefault();
-        $(".flyoutMenu").toggleClass("active");
-    });
+  $(".toggler__btn").on("click", function (event) {
+    event.preventDefault();
+    $(".flyoutMenu").toggleClass("active");
+  });
+  $(".closest__btn").on("click", function (event) {
+    event.preventDefault();
+    $(".flyoutMenu").toggleClass("active");
+  });
 
-    $(document).on("click", function (e) {
-        if ($(e.target).closest(".flyout__inner").length === 0 && $(e.target).closest(".toggler__btn").length === 0) {
-            $(".flyoutMenu").removeClass("active");
-        }
-    });
+  $(document).on("click", function (e) {
+    if (
+      $(e.target).closest(".flyout__inner").length === 0 &&
+      $(e.target).closest(".toggler__btn").length === 0
+    ) {
+      $(".flyoutMenu").removeClass("active");
+    }
+  });
+  
+  	  $(".que").click(function () {
+		  $(this).next(".anw").stop().slideToggle(300);
+		  $(this).toggleClass("on").siblings().removeClass("on");
+		  $(this).next(".anw").siblings(".anw").slideUp(300); // 1개씩 펼치기
+		});
+		
+		
+		function readURL(input) {
+	    	console.log("버튼클릭함1");
+	        if (input.files && input.files[0]) {
+	        var reader = new FileReader();
+	        reader.onload = function (e) {
+	                $('#cover').attr('src', e.target.result);        //cover src로 붙여지고
+	                $('#fileName').val(input.files[0].name);    //파일선택 form으로 파일명이 들어온다
+	            }
+	          reader.readAsDataURL(input.files[0]);
+	        }
+	    }	    
 
-    /*********************************
-    /*  Mobile Menu Expand
-    *********************************/
-    $(".flyout-main__menu .nav__link").on("click", function (event) {
-        event.preventDefault();
-        // $(".has__dropdown").find(".sub__menu").slideUp();
-        $(this).parent(".has__dropdown").find(".sub__menu").slideToggle();
-    });
-
-    $(".flyout-main__menu .sub__menu .nav__link").on("click", function (event) {
-        event.preventDefault();
-        $(this).parent(".has__dropdown").find(".sub__sub-menu").slideToggle();
-    });
-
-    /*********************************
-    /* Add/Minus Quantity
-    *********************************/
-    $(".incressQnt").on("click", function () {
-        var $qty = $(this).closest("div").find(".qnttinput");
-        var currentVal = parseInt($qty.val());
-        if (!isNaN(currentVal)) {
-            $qty.val(currentVal + 1);
-        }
-    });
-    $(".decressQnt").on("click", function () {
-        var $qty = $(this).closest("div").find(".qnttinput");
-        var currentVal = parseInt($qty.val());
-        if (!isNaN(currentVal) && currentVal > 1) {
-            $qty.val(currentVal - 1);
-        } else {
-            $(this).parents(".cart__action__btn").find(".cart__quantity").css("display", "none");
-        }
-    });
-
+		$("#myFileUp").change(function(){
+	        readURL(this);
+	    });
 
 })(jQuery);
+
+
+
+

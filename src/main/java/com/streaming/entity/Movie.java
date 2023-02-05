@@ -39,12 +39,11 @@ public class Movie extends BaseEntity {
 	@Column(nullable=false)
 	private String openDate; //개봉날짜
 	
-	public void updateMovie(MovieFormDto movieFormDto ) {
+	public void updateMovie(MovieFormDto movieFormDto) {
 		this.title = movieFormDto.getTitle();
 		this.category = movieFormDto.getCategory();
 		this.openDate = movieFormDto.getOpenDate();
 		this.story = movieFormDto.getStory();
-		
 	}
 	
 }

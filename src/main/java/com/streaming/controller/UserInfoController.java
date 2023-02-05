@@ -34,6 +34,7 @@ public class UserInfoController {
 		@PostMapping(value = "/signup")
 		//@Valid: 유효성을 검증하려고 하는 객체 앞에 붙여줌!
 		//BindingResult: 유효성 검증 후에 결과를 넣어준다.
+		//Model model -> 클라이언트가 넘겨준 값들
 		public String signup(@Valid UserInfoDto userInfoDto, BindingResult bindingResult, Model model) {
 			
 			//에러가 있다면 회원가입 페이지로 이동

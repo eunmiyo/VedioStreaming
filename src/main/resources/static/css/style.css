@@ -2870,3 +2870,65 @@ table {
 /*********************************
 /* Pay End
 *********************************/
+
+/*********************************
+/* Upload Start
+*********************************/
+
+/*라벨은 원하는대로 커스텀하고*/
+
+.fileRegiBtn label {
+
+	display: inline-block;
+
+	padding: .5em .75em; 
+
+	color: #fff;
+
+	font-size: inherit; 
+
+	line-height: normal; 
+
+ 	vertical-align: middle;
+
+	background-color: #e90101; 
+
+	cursor: pointer; 
+
+	border: 1px solid #e90101;
+
+	border-radius: .25em;
+
+}
+
+/*파일선택시 선택된 파일명이 붙는것을 가려준다*/
+
+.fileRegiBtn input[type="file"]{
+
+	position: absolute; 
+
+	width: 1px; 
+
+	height: 1px; 
+
+	padding: 0; 
+
+	margin: -1px; 
+
+	overflow: hidden; 
+
+	clip:rect(0,0,0,0); 
+
+	border: 0;
+
+}
+
+.selectCover img {
+	display: block; 
+	margin: 0px auto;
+	padding-bottom: 20px;
+}
+
+/*********************************
+/* Upload End
+*********************************/
