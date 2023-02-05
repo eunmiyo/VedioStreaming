@@ -34,6 +34,7 @@ public class UploadContoller {
 			//서비스 호출
 			movieService.uploadMovie(moiveFormDto, videoFile, imgFile);
 		} catch (Exception e) {
+			e.printStackTrace();
 			model.addAttribute("errorMessage", "영화 저장에 실패하였습니다");
 		}
 		
