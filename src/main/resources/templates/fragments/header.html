@@ -24,7 +24,7 @@
 			                <li class="active"><a href="/">HOME</a></li>
 			                <li><a href="/streaming">STREAMING </a></li>
 			                <li><a href="/contact">CONTACT</a></li>
-			                <li><a href="/upload">UPLOAD</a></li>
+			                <li sec:authorize="hasAnyAuthority('ROLE_ADMIN')"><a href="/admin/upload">UPLOAD</a></li>
 			              </ul>
 			            </div>
 			            <div class="header__meta">

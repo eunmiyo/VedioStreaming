@@ -1,15 +1,11 @@
 package com.streaming.service;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.streaming.dto.MovieFormDto;
-import com.streaming.entity.Movie;
 import com.streaming.entity.MovieImg;
 import com.streaming.repository.MovieImgRepository;
 
@@ -22,6 +18,8 @@ public class MovieImgService {
 
 	//의존성 주입
 	private final MovieImgRepository movieImgRepository;
+	
+	private final FileService fileService;
 	
 	public void uploadMovieFile(MovieImg movieImg, MultipartFile[] videoFile, MultipartFile[] imgFile) throws Exception {
 		// (1)파일 저장할 위치 설정

@@ -5,6 +5,23 @@
 <head>
 <meta charset="UTF-8">
 <title>Online Streaming</title>
+
+<!-- 사용자 CSS 추가 -->
+<th:block layout:fragment="css">
+    <style>
+        .card-text{
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+        a:hover{
+            text-decoration:none;
+        }
+        .center{
+            text-align:center;
+        }
+    </style>
+</th:block>
 </head>
 <body>
 	<div layout:fragment="content">
@@ -247,6 +264,7 @@
           </div>
         </div>
       </div>
+	
     </section>
     <!-- Movies Section End -->
 

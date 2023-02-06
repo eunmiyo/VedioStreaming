@@ -101,13 +101,12 @@
                     로그인 하기
                   </button>
                 </div>
-                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
                 <div class="account__desc">
                   <div class="account__meta">
                     계정이 없으신가요?
                     <a href="/members/signup">회원가입</a>
                   </div>
-                  <a href="forget-password.html">회원탈퇴</a>
+                  <a href="/members/delete">회원탈퇴</a>
                 </div>
               </form>
             </div>

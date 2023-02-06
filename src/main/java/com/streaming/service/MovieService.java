@@ -1,16 +1,16 @@
 package com.streaming.service;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.streaming.dto.MainMovieDto;
 import com.streaming.dto.MovieFormDto;
 import com.streaming.entity.Movie;
 import com.streaming.entity.MovieImg;
+import com.streaming.repository.MovieImgRepository;
 import com.streaming.repository.MovieRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -22,10 +22,14 @@ public class MovieService {
 	
 	private final MovieImgService movieImgService;
 	
+	private final MovieImgRepository movieImgRepository;
+	
 	//의존성 주입
 	private final MovieRepository movieRepository;
 	
-	public void uploadMovie(MovieFormDto movieFormDto, MultipartFile[] videoFile, MultipartFile[] imgFile) throws Exception {
+	
+	
+	public Long uploadMovie(MovieFormDto movieFormDto, MultipartFile[] videoFile, MultipartFile[] imgFile) throws Exception {
 		// (1)파일 저장할 위치 설정
 		String uploadFolder = "C:\\streaming";
 		
@@ -38,6 +42,8 @@ public class MovieService {
 		movieImg.setMovie(movie); //ENTITY 정보를 다른 ENTITY 정보로 설정
 		
 		movieImgService.uploadMovieFile(movieImg, videoFile, imgFile); //파일 업로드
+		
+		return movie.getId();
 	}
 	
 	private void uploadValidation(MovieFormDto moiveFormDto, MultipartFile[] videoFile, MultipartFile[] imgFile) throws Exception {
@@ -61,5 +67,10 @@ public class MovieService {
 		} else {
 			//
 		}
+	}
+	
+	@Transactional(readOnly = true)
+	public Page<MainMovieDto> getMainItemPage(Pageable pageable) {
+		return movieRepository.getMainItemPage(pageable);
 	}
 }

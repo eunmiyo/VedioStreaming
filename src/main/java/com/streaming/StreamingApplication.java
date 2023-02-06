@@ -10,4 +10,5 @@ public class StreamingApplication {
 		SpringApplication.run(StreamingApplication.class, args);
 	}
 
+	
 }

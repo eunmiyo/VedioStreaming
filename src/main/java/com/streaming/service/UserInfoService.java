@@ -1,5 +1,7 @@
 package com.streaming.service;
 
+import java.util.Optional;
+
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -50,6 +52,12 @@ public class UserInfoService implements UserDetailsService {
 		if(findUser != null) {
 			throw new IllegalStateException("이미 가입된 회원입니다!");
 		}
+	}
+	
+	//회원탈퇴
+	@Transactional
+	public void delete(long id) {
+		userInfoRepository.deleteById(id);
 	}
 	
 }

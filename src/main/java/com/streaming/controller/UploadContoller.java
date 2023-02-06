@@ -21,13 +21,13 @@ public class UploadContoller {
 	
 	private final MovieService movieService;
 	
-	@GetMapping(value = "/upload")
+	@GetMapping(value = "admin/upload")
 	public String upload(Model model) {
 		model.addAttribute("movieFormDto", new MovieFormDto());
 		return "movie/movieForm";
 	}
 
-	@PostMapping(value = "/upload")
+	@PostMapping(value = "admin/upload")
 	public String uploadFormPost(@Valid MovieFormDto moiveFormDto, BindingResult bindingResult, 
 			Model model, @RequestParam("videoFile") MultipartFile[] videoFile, @RequestParam("imgFile") MultipartFile[] imgFile) {
 		try {

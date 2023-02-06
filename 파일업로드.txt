@@ -1,4 +1,4 @@
-//참조 사이트 : https://velog.io/@vgo_dongv/Spring-%ED%8C%8C%EC%9D%BC-%EC%97%85%EB%A1%9C%EB%93%9C
+﻿//참조 사이트 : https://velog.io/@vgo_dongv/Spring-%ED%8C%8C%EC%9D%BC-%EC%97%85%EB%A1%9C%EB%93%9C
 
 파일 업로드
 
@@ -114,4 +114,5 @@ Repository : DB 수행 수행 할 쿼리
 @RequiredArgsConstructor : 클래스안에 final 전역변수 선언 시 정의 필요 없음
 private final MovieRepository movieRepository;
 
+https://congsong.tistory.com/51 참조
 
