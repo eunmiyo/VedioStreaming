@@ -30,8 +30,6 @@ public class MovieService {
 	
 	
 	public Long uploadMovie(MovieFormDto movieFormDto, MultipartFile[] videoFile, MultipartFile[] imgFile) throws Exception {
-		// (1)파일 저장할 위치 설정
-		String uploadFolder = "C:\\streaming";
 		
 		uploadValidation(movieFormDto, videoFile, imgFile);
 		

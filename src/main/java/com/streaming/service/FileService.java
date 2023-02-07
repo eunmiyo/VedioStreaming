@@ -10,6 +10,7 @@ import lombok.extern.java.Log;
 @Service
 @Log
 public class FileService {
+
 	//파일 업로드
 	public String uploadFile(String uploadPath, String originalFileName, byte[] fileData) throws Exception {
 		UUID uuid = UUID.randomUUID(); //중복되지 않은 랜덤한 파일이름 생성
@@ -31,4 +32,5 @@ public class FileService {
 		
 		return savedFileName;
 	}
+
 }

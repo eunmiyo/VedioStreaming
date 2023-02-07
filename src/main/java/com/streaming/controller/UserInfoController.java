@@ -1,18 +1,15 @@
 package com.streaming.controller;
 
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.streaming.dto.UserInfoDto;
 import com.streaming.entity.UserInfo;
@@ -25,6 +22,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class UserInfoController {
 	private final UserInfoService userInfoService;
+	
 	private final PasswordEncoder passwordEncoder;
 	
 	//Get방식, 회원가입 화면
@@ -51,7 +49,7 @@ public class UserInfoController {
 				userInfoService.saveUser(userInfo);
 				
 			} catch(IllegalStateException e) {
-			model.addAttribute("errorMessage", e.getMessage());
+				model.addAttribute("errorMessage", e.getMessage());
 				return "member/signup";
 			}	
 			
@@ -60,7 +58,7 @@ public class UserInfoController {
 		
 		//로그인 화면
 		@GetMapping(value = "/login")
-	public String loginMember() {
+		public String loginMember() {
 			return "member/login";
 		}
 		
@@ -73,17 +71,27 @@ public class UserInfoController {
 			return "member/login";
 		}
 		
+		//탈퇴하기
 		/*
-		 * //탈퇴 화면
-		 * 
-		 * @GetMapping(value = "/delete{id}") public String deleteMember(@PathVariable
-		 * Long id) { userInfoService.delete(id); return "member/delete"; }
-		 * 
-		 * //회원탈퇴
-		 * 
-		 * @DeleteMapping(value = "/delete{id}")
-		 * 
-		 * @ResponseBody public String deleteMember1(@PathVariable Long id) {
-		 * userInfoService.delete(id); return "member/login"; }
+		 * @DeleteMapping("/login/{userId}/delete") public @ResponseBody ResponseEntity
+		 * deleteUserInfo(@PathVariable("userId") Long userId) {
+		 * userInfoDeleteService.delete(userId); return new ResponseEntity<Long>(userId,
+		 * HttpStatus.OK); }
 		 */
+		
+		@PostMapping("/deleteUser")
+		public String deleteUser(@RequestParam(value="email") String email, @RequestParam(value="password") String password, Model model) {
+
+			if(userInfoService.deleteUser(email, passwordEncoder.encode(password)) > 0) {
+//			if(userInfoService.deleteUser(email, password) > 0) {
+				model.addAttribute("result", "SUCCESS");
+				model.addAttribute("errorMessage", "회원탈퇴에 성공하였습니다");
+			} else {
+				model.addAttribute("result", "FAIL");
+				model.addAttribute("errorMessage", "회원탈퇴에 실패하였습니다");
+			}
+
+			return "member/login";
+		}
+
 }

@@ -2,6 +2,8 @@ package com.streaming.service;
 
 import java.io.File;
 
+import org.apache.groovy.parser.antlr4.util.StringUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,26 +17,25 @@ import lombok.RequiredArgsConstructor;
 @Transactional //서비스 클래스에서 로직을 처리하다가 에러가 발생하면 로직을 수행하기 이전 상태로 되돌려 준다. 
 @RequiredArgsConstructor
 public class MovieImgService {
+	
+	@Value("${movieImgLocation}")
+	private String movieImgLocation;
 
 	//의존성 주입
 	private final MovieImgRepository movieImgRepository;
 	
-	private final FileService fileService;
-	
 	public void uploadMovieFile(MovieImg movieImg, MultipartFile[] videoFile, MultipartFile[] imgFile) throws Exception {
-		// (1)파일 저장할 위치 설정
-		String uploadFolder = "C:\\streaming";
 		
 		uploadValidation(movieImg, videoFile, imgFile);
 		
 		//전달된 비디오 파일이 없는 경우
-		String videoFileName = uploadFile(uploadFolder, videoFile);
+		String videoFileName = uploadFile(movieImgLocation, videoFile);
 		
 		//전달된 이미지 파일이 없는 경우
-		String imgFileName = uploadFile(uploadFolder, imgFile);
+		String imgFileName = uploadFile(movieImgLocation, imgFile);
 		
-		movieImg.updateMovieVideo(videoFileName, videoFileName, uploadFolder);
-		movieImg.updateMovieImg(imgFileName, imgFileName, uploadFolder);
+		movieImg.updateMovieVideo(videoFileName, videoFileName, "/images/"+videoFileName);
+		movieImg.updateMovieImg(imgFileName, imgFileName, "/images/"+imgFileName);
 		
 		movieImgRepository.save(movieImg);
 	}
@@ -62,7 +63,7 @@ public class MovieImgService {
 		}
 	}
 	
-	private String uploadFile(String uploadFolder, MultipartFile[] uploadFile) throws Exception {
+	private String uploadFile(String movieImgLocation, MultipartFile[] uploadFile) throws Exception {
 		String originalFilename = "";
 		
 		for(MultipartFile multipartFile : uploadFile) {
@@ -76,7 +77,7 @@ public class MovieImgService {
 			// uploadFolder\\gongu03.jpg으로 조립
 			// 이렇게 업로드 하겠다라고 설계
 			// 서버에 저장하면서 서버에 저장될 이름 설정
-			File saveFile = new File(uploadFolder, originalFilename);
+			File saveFile = new File(movieImgLocation, originalFilename);
 			
 			try {
 				//transferTo() : 물리적으로 파일 업로드가 됨
@@ -89,4 +90,5 @@ public class MovieImgService {
 		
 		return originalFilename;
 	}
+	
 }

@@ -6,6 +6,33 @@
 <meta charset="UTF-8">
 <title>Online Streaming</title>
 
+<!-- 각 페이지에 스크립트가 작성될 위치 -->
+<th:block layout:fragment="script">
+	<script th:inline="javascript">
+	//회원가입이 실패했을 때
+		$(document).ready(function() {
+			var errorMessage = [[${errorMessage}]];
+			if(errorMessage != null) {
+				alert(errorMessage);
+			}
+			
+			$("#loginUser").off("click").on("click", function(e) {
+				var mainFrm = $("#mainFrm");
+				mainFrm.attr("action", "/members/login");
+				mainFrm.attr("method", "post");
+				mainFrm.submit();
+			});
+			
+			$("#delUser").off("click").on("click", function(e) {
+				var mainFrm = $("#mainFrm");
+				mainFrm.attr("action", "/members/deleteUser");
+				mainFrm.attr("method", "post");
+				mainFrm.submit();
+			});
+		});
+	</script>
+</th:block>
+
 <!-- 사용자 CSS 추가 -->
 <th:block layout:fragment="css">
   <style>
@@ -69,7 +96,7 @@
               /></a>
             </div>
             <div class="form__inner">
-              <form action="/members/login" method="post" class="form__wrapper p-0">
+              <form action="/members/login" id="mainFrm" method="post" class="form__wrapper p-0">
                 <h2 class="popup__title">Login</h2>
                 <div class="form-group">
                   <label for="email">Email</label>
@@ -97,16 +124,14 @@
                 </div>
                 <div class="submit__btn">
                 <p th:if="${loginErrorMsg}" class="error" th:text="${loginErrorMsg}"></p>
-                  <button type="submit" class="btn btn-primary mt-0 w-100">
-                    로그인 하기
-                  </button>
+                  <input type="button" class="btn btn-primary mt-0 w-100" id="loginUser" value="로그인 하기" />
                 </div>
                 <div class="account__desc">
                   <div class="account__meta">
                     계정이 없으신가요?
                     <a href="/members/signup">회원가입</a>
                   </div>
-                  <a href="/members/delete">회원탈퇴</a>
+                  <input type="button" class="btn btn-primary mt-0 w-100" id="delUser" value="회원탈퇴" />
                 </div>
               </form>
             </div>

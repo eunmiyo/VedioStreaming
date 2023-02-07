@@ -2327,6 +2327,8 @@ ca .breadcrumb__wrapper.text-center {
 
 .blog__post .blog__content {
   padding: 25px 25px 30px;
+  height: 200px;
+  overflow: hidden;
 }
 
 .blog__post .blog__content .title {

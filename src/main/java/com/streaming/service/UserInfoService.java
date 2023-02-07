@@ -1,7 +1,5 @@
 package com.streaming.service;
 
-import java.util.Optional;
-
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -25,7 +23,6 @@ public class UserInfoService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-		
 		UserInfo userInfo = userInfoRepository.findByEmail(email);
 		
 		if(userInfo == null) {
@@ -54,10 +51,12 @@ public class UserInfoService implements UserDetailsService {
 		}
 	}
 	
-	//회원탈퇴
-	@Transactional
-	public void delete(long id) {
-		userInfoRepository.deleteById(id);
+	public int deleteUser(String email, String encPassword) {
+		//if (userInfoRepository.findUser(email, passwordEncoder.encode(password)) == 0) {
+		if (userInfoRepository.findUser(email, encPassword) == 0) {
+			return -1;
+		}
+		
+		return userInfoRepository.deleteByEmail(email);
 	}
-	
 }

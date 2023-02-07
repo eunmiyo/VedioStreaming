@@ -89,175 +89,30 @@
               >
                 <div class="content__body">
                   <div class="row">
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
-                      <div class="Mcard__inner">
-                        <div class="movie-card__wrapper">
-                          <a href="movie-single.html" class="card__image">
-                            <img
-                              src="/images/m-image-01.jpg"
-                              alt="movie-img"
-                            />
-                          </a>
-
-                          <div class="card__content">
-                            <div class="year">2022</div>
-                            <h4 class="card__title">
-                              <a href="#">avengers endgame</a>
-                            </h4>
-                            <div class="card__action">
-                              <ul>
-                                <li>
-                                  <a href="#">
-                                    <img
-                                      src="/images/heart.png"
-                                      alt="heart"
-                                    />
-                                    1.5k</a
-                                  >
-                                </li>
-                              </ul>
+                  <th:block th:each="movie, status: ${movies.getContent()}">
+                   <div class="col-lg-4 col-md-6 col-sm-6">
+					<div class="blog__post text-center">
+                            <div class="blog__image">
+                            	<a th:href="'/movie/' + ${movie.id}" class="text-dark">
+                                <img th:src="${movie.imgUrl}" th:alt="${movie.title}" />
+                                <div class="blog__overlay">
+                                    <div class="ribbon">[[${movie.openDate}]]</div>
+                                    <div class="blog__meta">
+                                        <p>[[${movie.category}]]</p>
+                                        <a href="#"><i class="far fa-heart"></i></a>
+                                    </div>
+                                </div>
                             </div>
-                          </div>
-
-                          <div class="card__content--bottom">
-                            <div class="duration">
-                              <span class="quality">hD</span>
-                              <img src="/images/add.png" alt="add" />
+                            <div class="blog__content">
+                                <h4 class="title"><a th:href="blog-single.html">[[${movie.title}]]</a></h4>
+                                <p class="content">[[${movie.story}]]</p>
+                                <div class="blog__btn">
+                                    <a th:href="blog-single.html" class="btn btn-primary">영화보기</a>
+                                </div>
                             </div>
-                            <div class="duration">
-                              <img class="clock_img" src="/images/clock.png" alt="clock" />
-                              128 min
-                            </div>
-                          </div>
                         </div>
-                      </div>
-                    </div>
-
-                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
-                  <div class="Mcard__inner">
-                    <div class="movie-card__wrapper">
-                      <a href="movie-single.html" class="card__image">
-                        <img
-                          src="/images/m-image-01.jpg"
-                          alt="movie-img"
-                        />
-                      </a>
-                      <div class="card__content">
-                        <div class="year">2022</div>
-                        <h4 class="card__title">
-                          <a href="#">avengers endgame</a>
-                        </h4>
-                        <div class="card__action">
-                          <ul>
-                            <li>
-                              <a href="#">
-                                <img
-                                  src="/images/heart.png"
-                                  alt="heart"
-                                />
-                                1.5k</a
-                              >
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                      <div class="card__content--bottom">
-                        <div class="duration">
-                          <span class="quality">hD</span>
-                          <img src="/images/add.png" alt="add" />
-                        </div>
-                        <div class="duration">
-                          <img class="clock_img" src="/images/clock.png" alt="clock" />
-                          128 min
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
-                  <div class="Mcard__inner">
-                    <div class="movie-card__wrapper">
-                      <a href="movie-single.html" class="card__image">
-                        <img
-                          src="/images/m-image-01.jpg"
-                          alt="movie-img"
-                        />
-                      </a>
-                      <div class="card__content">
-                        <div class="year">2022</div>
-                        <h4 class="card__title">
-                          <a href="#">avengers endgame</a>
-                        </h4>
-                        <div class="card__action">
-                          <ul>
-                            <li>
-                              <a href="#">
-                                <img
-                                  src="/images/heart.png"
-                                  alt="heart"
-                                />
-                                1.5k</a
-                              >
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                      <div class="card__content--bottom">
-                        <div class="duration">
-                          <span class="quality">hD</span>
-                          <img src="/images/add.png" alt="add" />
-                        </div>
-                        <div class="duration">
-                          <img class="clock_img" src="/images/clock.png" alt="clock" />
-                          128 min
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
-                  <div class="Mcard__inner">
-                    <div class="movie-card__wrapper">
-                      <a href="movie-single.html" class="card__image">
-                        <img
-                          src="/images/m-image-01.jpg"
-                          alt="movie-img"
-                        />
-                      </a>
-                      <div class="card__content">
-                        <div class="year">2022</div>
-                        <h4 class="card__title">
-                          <a href="#">avengers endgame</a>
-                        </h4>
-                        <div class="card__action">
-                          <ul>
-                            <li>
-                              <a href="#">
-                                <img
-                                  src="/images/heart.png"
-                                  alt="heart"
-                                />
-                                1.5k</a
-                              >
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                      <div class="card__content--bottom">
-                        <div class="duration">
-                          <span class="quality">hD</span>
-                          <img src="/images/add.png" alt="add" />
-                        </div>
-                        <div class="duration">
-                          <img class="clock_img" src="/images/clock.png" alt="clock" />
-                          128 min
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+					 </div>
+					 </th:block>		
               </div>
             </div>
             </div>
