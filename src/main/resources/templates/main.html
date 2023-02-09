@@ -31,18 +31,17 @@
         <div class="row">
           <div class="col-12">
             <div class="hero__text">
-              <h1 class="hero__title">Unlimited <span>Movie</span></h1>
+              <h1 class="hero__title">World Best<span>TV</span></h1>
               <ul class="hero__meta">
                 <li>
                   <span class="quality">HD</span>
-                  <span>Romance, drama</span>
+                  <span>Drama</span>
                 </li>
                 <li>
-                  <img src="/images/calender.png" alt="calender" />18 MAY
-                  2022
+                  <img src="/images/calender.png" alt="calender" />2023.03
                 </li>
                 <li>
-                  <img src="/images/clock.png" alt="clock" /> 128 min
+                  <img src="/images/clock.png" alt="clock" /> 12:00
                 </li>
               </ul>
               <div class="hero__btn">
@@ -52,7 +51,7 @@
                   data-height="360"
                   data-small-btn="true"
                   class="btn btn-outline"
-                  href="https://www.youtube.com/watch?v=tv7LfFeamsc"
+                  href="https://youtu.be/fk8vvmHIWAA"
                   >Watch now
                 </a>
               </div>
@@ -112,19 +111,38 @@
                             </div>
                         </div>
 					 </div>
-					 </th:block>		
+					 </th:block>
               </div>
             </div>
             </div>
           </div>
         </div>
       </div>
+      
+       <!-- pagination start  -->
+            <nav class="pagination__wrapper" th:with="start=${(movies.number/maxPage)*maxPage + 1}
+			,end=(${(movies.totalPages == 0) ? 1 : (start + (maxPage - 1) < movies.totalPages ? start + (maxPage - 1) : movies.totalPages)})"
+			aria-label="Page navigation example">
+            <ul class="pagination">
+                <li class="pagination__item"  th:classappend="${movies.first}?'disabled'">
+                  <a class="page-link" th:href="@{'/' + '&page=' + ${movies.number-1}}"> < </a>
+                </li>
+                <li class="pagination__item active" th:each="page: ${#numbers.sequence(start, end)}"
+					th:classappend="${movies.number eq page-1}?'active':''">
+                  <a class="page-link" th:href="@{'/' +'&page=' + ${page-1}}">[[${page}]]</a>
+                </li>
+                <li class="pagination__item" th:classappend="${movies.last}?'disabled'">
+                  <a class="page-link" th:href="@{'/' + '&page=' + ${movies.number+1}}"> > </a>
+                </li>
+              </ul>
+            </nav>
+            <!-- pagination end -->
 	
     </section>
     <!-- Movies Section End -->
 
     <!-- Online Show Section Start -->
-    <section class="onlineShow__section bg-color">
+ <!--     <section class="onlineShow__section bg-color">
       <div class="container">
         <div class="row">
           <div class="col-12">
@@ -255,6 +273,7 @@
         </div>
       </div>
     </section>
+    -->
     <!-- Online Show Section End -->
 	</div>
 </body>

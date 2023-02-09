@@ -116,3 +116,30 @@ private final MovieRepository movieRepository;
 
 https://congsong.tistory.com/51 참조
 
+
+
+디비 변경해주기!
+
+
+select *
+from streaming.movie;
+
+
+
+select *
+from streaming.movie_img;
+
+
+
+select replace(img_url,'images','storage'), replace(video_url,'images','storage')fromstreaming.movie_img;
+
+
+
+update streaming.movie_img set img_url = '/storage/m-image-02.jpg', video_url = '/storage/m-image-08.jpg' where movie_img_id = 13;
+
+
+commit;
+
+
+
+

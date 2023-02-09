@@ -22,13 +22,16 @@
 			            <div class="header__menu">
 			              <ul class="main__menu">
 			                <li class="active"><a href="/">HOME</a></li>
-			                <li><a href="/streaming">STREAMING </a></li>
-			                <li><a href="/contact">CONTACT</a></li>
+			                <!-- <li><a href="/streaming">STREAMING </a></li>
+			                <li><a href="/contact">CONTACT</a></li> -->
 			                <li sec:authorize="hasAnyAuthority('ROLE_ADMIN')"><a href="/admin/upload">UPLOAD</a></li>
 			              </ul>
 			            </div>
 			            <div class="header__meta">
 			              <ul class="meta__item">
+			              	<li sec:authorize="hasAnyAuthority('ROLE_USER')">
+			                  <a style="margin-right: 30px;" href="/members/update" class="btn btn-primary" sec:authorize="isAuthenticated()">회원정보</a>
+			                </li>
 			                <li>
 			                  <a href="/members/login" class="btn btn-primary" sec:authorize="isAnonymous()">로그인</a>
 			                </li>
