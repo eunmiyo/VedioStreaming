@@ -447,7 +447,7 @@ button:focus {
 /* Banner Slider Section Strat 
 *********************************/
 .banner__section {
-  background-image: url("../images/banner-bg.jpg");
+  background-image: url("../images/theglory.jpg");
   background-size: cover;
   background-position: center top;
   background-repeat: no-repeat;
@@ -487,7 +487,6 @@ button:focus {
 .hero__text .hero__title {
   font-size: 75px;
   color: #fff;
-  margin-bottom: 24px;
 }
 
 .hero__text .hero__title span {
@@ -498,7 +497,6 @@ button:focus {
 .hero__text .hero__desc {
   color: #fff;
   margin-top: 30px;
-  margin-bottom: 0;
 }
 
 .hero__text .hero__meta {
@@ -600,7 +598,7 @@ button:focus {
 }
 
 .hero__text .hero__btn {
-  margin-top: 45px;
+  margin-top: 20px;
 }
 
 .hero__text .hero__btn .btn {

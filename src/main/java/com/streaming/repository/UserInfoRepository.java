@@ -11,8 +11,8 @@ public interface UserInfoRepository extends JpaRepository<UserInfo, Long> {
 	UserInfo findByEmail(String email);
 	
 	//nativeQuery=true : DB 에서 사용하는 쿼리를 그대로 사용할 지 여부
-	@Query(value="select count(*) from userinfo where email = :email and user_pw = :user_pw", nativeQuery=true)
-	int findUser(@Param("email") String email, @Param("user_pw") String password);
+	@Query(value="select count(*) from userinfo where email = :email", nativeQuery=true)
+	int findEmailCount(@Param("email") String email);
 	
 	//회원삭제
 	int deleteByEmail(String email);

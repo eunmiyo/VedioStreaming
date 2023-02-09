@@ -1,0 +1,7 @@
+th:object="${객체명}"
+
+th:field=*{변수명}
+id=변수명 name=변수명 value=객체명.get변수명()
+
+value="${객체명}"
+value=객체값
