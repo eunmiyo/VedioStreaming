@@ -82,7 +82,8 @@
               /></a>
             </div>
             <div class="form__inner">
-              <form class="form__wrapper p-0" action="/members/update"  method="post" th:object="${userInfoDto}" enctype="multipart/form-data">
+            <!-- enctype="multipart/form-data" -->
+              <form class="form__wrapper p-0" action="/members/update"  method="post" th:object="${userInfoDto}">
                 <h2 class="popup__title">Update Account</h2>
                 <input type="hidden" th:field="*{id}">
                 <div class="form-group">

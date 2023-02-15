@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -40,11 +41,18 @@ public class SecurityConfig {
 		 */
 		http.csrf().disable();
 		
+		/**
+		 * csrf는 session이 꼭 있어야 함
+		 * 어디서든 세션을 사용하겠다.
+		 * http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.ALWAYS);
+		 */
+		
 		//페이지의 접근에 관한 설정
 		http.authorizeRequests()
 		    .mvcMatchers("/css/**", "/js/**", "/img/**").permitAll()
-		    .mvcMatchers("/", "/streaming", "/contact", "/upload", "/members/**", "/storage/**", "/images/**").permitAll() //모든 사용자가 로그인(인증) 없이 접근할 수 있도록 설정
-		    .mvcMatchers("/admin/**").hasRole("ADMIN") // '/admin' 으로 시작하는 경로는 계정이 ADMIN role일 경우에만 접근 가능하도록 설정
+		    .mvcMatchers("/", "/streaming", "/contact", "/upload", "/members/**", "/storageimg/**", "/images/**").permitAll() //모든 사용자가 로그인(인증) 없이 접근할 수 있도록 설정
+		    .mvcMatchers("/storagevideo/**").hasAnyRole("ADMIN","USER") // '/admin' 으로 시작하는 경로는 계정이 ADMIN role일 경우에만 접근 가능하도록 설정
+		    .mvcMatchers("/admin/**").hasRole("ADMIN")
 		    .anyRequest().authenticated(); //그 외에 페이지는 모두 로그인(인증)을 받아야 한다.
 		
 		//인증되지 않은 사용자가 리소스(페이지, 이미지 등..)에 접근했을때 설정

@@ -9,15 +9,12 @@
 <!-- 각 페이지에 스크립트가 작성될 위치 -->
 <th:block layout:fragment="script">
 	<script th:inline="javascript">
-	//회원가입이 실패했을 때
-		$(document).ready(function() {
-			var errorMessage = [[${errorMessage}]];
-			if(errorMessage != null) {
-				alert(errorMessage);
-			}
-			bindDomEvent();
-		});
-		
+	$(document).ready(function() {
+		var errorMessage;
+		if(errorMessage != null) {
+			alert(errorMessage);
+		}
+	});
 		//파일 첨부시 이미지 파일인지 검사를 한다.
 		function bindDomEvent(){
             $(".custom-file-input").on("change", function() {
@@ -103,7 +100,7 @@ $(document).ready(function(){
 		<section class="movies__section bg-color">
       <div class="container">
       	<div class="form__inner">
-              <form method="post" action="/upload" enctype="multipart/form-data" class="form__wrapper p-0" th:object="${movieFormDto}">
+              <form method="post" action="/admin/upload" enctype="multipart/form-data" class="form__wrapper p-0" th:object="${movieFormDto}">
                   <div class="section-title">
                 <h2 class="main-title">영화등록</h2>
                 <input type="hidden" th:field="*{id}">
@@ -179,18 +176,18 @@ $(document).ready(function(){
 				<input id="imgfileName" class="form-control" value="이미지선택" style="width:85%; display: inline;">
 			
 						<div class="fileRegiBtn">
-							<label class="custom-file-label"  for="imgFileUp">파일 열기 <input onchange="readURL(this);" class="custom-file-input" type="file" id="imgFileUp" name="imgFile"></label>
-							
+							<label class="custom-file-label"  for="imgFileUp">파일 열기 </label>
+							<input onchange="readURL(this);" class="custom-file-input" type="file" id="imgFileUp" name="imgFile">
 						</div>		
 				</div>
-				<!-- 커버이미지 들어오는 부분 (임시로 이미지를 넣어줬다)-->
+				<!-- 커버이미지 들어오는 부분 -->
 				
-				<div class="selectCover"style=" padding-left: 0;">			
+				<div class="selectCover"style=" padding-left: 0;">	
 				 	 <img id="preview"  style="width: 182px; height: 268px;"/>
 				 </div>   
-				           
+				
                 <div class="submit__btn">
-                  <button th:formaction="@{/admin/upload}" type="submit" class="btn btn-primary mt-0 w-100">
+                  <button type="submit" class="btn btn-primary mt-0 w-100" >
                     등록하기
                   </button>
                 </div>

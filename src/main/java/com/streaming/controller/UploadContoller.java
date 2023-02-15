@@ -33,12 +33,13 @@ public class UploadContoller {
 		try {
 			//서비스 호출
 			movieService.uploadMovie(moiveFormDto, videoFile, imgFile);
+			model.addAttribute("errorMessage", "영화 저장에 성공하였습니다");
 		} catch (Exception e) {
 			e.printStackTrace();
 			model.addAttribute("errorMessage", "영화 저장에 실패하였습니다");
 		}
 		
 		//forward
-		return "/movie/movieForm";
+		return "redirect:/admin/upload";
 	}
 }

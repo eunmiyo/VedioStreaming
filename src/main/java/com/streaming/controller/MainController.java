@@ -5,9 +5,12 @@ import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.streaming.dto.MainMovieDto;
 import com.streaming.service.MovieService;
@@ -23,11 +26,18 @@ public class MainController {
 	@GetMapping(value="/")
 	public String main(Optional<Integer> page, Model model) {
 		Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 6);
-		Page<MainMovieDto> movies = movieService.getMainItemPage(pageable);
+		Page<MainMovieDto> movies = movieService.getMainItemPage(pageable);		
 		
 		model.addAttribute("movies", movies);
 		model.addAttribute("maxPage", 5);
 		
 		return "main";
 	}
+	
+	@PostMapping(value="/storagevideo")
+	public void  video() {
+		
+	}
+	
+	
 }

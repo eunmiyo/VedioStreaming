@@ -124,14 +124,14 @@
                 </div>
                 <div class="submit__btn">
                 <p th:if="${loginErrorMsg}" class="error" th:text="${loginErrorMsg}"></p>
-                  <input type="button" class="btn btn-primary mt-0 w-100" id="loginUser" value="로그인 하기" />
+                  <input type="button" class="btn btn-primary" style="margin-right: 20px;" id="loginUser" value="로그인하기" />
+                  <input type="button" class="btn btn-primary" id="delUser" value="회원탈퇴" />
                 </div>
                 <div class="account__desc">
                   <div class="account__meta">
                     계정이 없으신가요?
                     <a href="/members/signup">회원가입</a>
                   </div>
-                  <input type="button" class="btn btn-primary mt-0 w-100" id="delUser" value="회원탈퇴" />
                 </div>
               </form>
             </div>

@@ -1,0 +1,74 @@
+
+Controller(컨트롤러) - 클라이언트 요청시 보여줄 화면을 설정 
+//@어노테이션 설정
+@RequestMapping("/url") //localhost:포트번호/url
+@Controller //이 클래스를 컨트롤러로 쓰겠다 선언
+@RequiredArgsConstructor //생성자 주입
+public class Controller{
+
+	//의존성 주입
+	private final UserInfoService userInfoService;
+
+//get방식, 보여줄 화면
+@GetMapping(value = "/url1") //localhost:포트번호/url/url1
+public 타입 메소드(매개변수){
+	return "html주소";
+	}
+}
+
+//post방식, 버튼을 눌렀을 때 실행되는 메소드
+//@Valid: 유효성을 검증하려고 하는 객체 앞에 붙여줌!, BindingResult 이랑 같이 씀
+//BindingResult: 유효성 검증 후에 결과를 넣어준다.
+//Model model -> 클라이언트가 넘겨준 값들
+@PostMapping(value = "/url")
+public 타입 메소드명(@Valid UserInfoDto userInfoDto, BindingResult bindingResult, Model model){
+	
+	//매개변수로 전달받은 model메소드를 이용해서 view에 전달할 데이터를 key, value 쌍으로 전달함.
+	//view(jsp) 에서 getAttribute("key") 메소드를 이용해서 해당 값 활용 가능함.
+	//view(jsp) 에서 ${} 를 이용해서 해당 값 활용 가능함.
+	model.addAttribute("key", "value");
+}
+
+//@RequestParam("가져올 데이터의 이름") [데이터타입] [가져온데이터를 담을 변수]
+//@RequestParam의 경우 url뒤에 붙는 파라미터의 값을 가져올 때 사용합니다.
+@PostMapping(value = "/url")
+public 타입 메소드명(@RequestParam(value="email") String email){
+	
+	//@PostMapping에서 @RequestParam을 써서 받을 수 있는 것은 
+	//HTML Form 태그에서 method 가 POST 전송일 때는 @RequestParam으로 값을 받을 수 있다.
+
+}
+
+Service(서비스) - DB 동작을 Transaction 으로 수행할 수 있다. 실제 기능 구현
+
+Repository(레파지토리) - JPA에서는 DB에 데이터를 CRUD, DB관련 쿼리문 작성, DAO역할을 하는 Repository, interfase로 생성
+//JpaRepository: 기본적인 CRUD 및 페이징 처리를 위한 메소드가 정의 되어있다.
+//JpaRepository<사용할 엔티티 클래스, 기본키 타입>
+public interface Repository extends JpaRepository<사용할 엔티티 클래스, 기본키타입>  {
+	List<MovieImg> findByMovieIdOrderByIdAsc(Long movieId);
+	
+	//nativeQuery=true : DB 에서 사용하는 쿼리를 그대로 사용할 지 여부
+	@Query(value="select count(*) from userinfo where email = :email", nativeQuery=true)
+	int findEmailCount(@Param("email") String email);
+}
+
+Query(쿼리) - 
+
+Entity - DB테이블에 존재하는 column(컬럼)들을 필드로 가지는 객체, Entity 클래스는 다른 클래스를 상속받거나 인터페이스의 구현체여서는 안된다.
+@Entity 어노테이션 지정
+
+
+DTO - DTO는 순수하게 데이터를 저장하고, 데이터에 대한 getter, setter 만을 가져야 한다. 
+위키피디아에 따르면 DTO는 어떠한 비즈니스 로직을 가져서는 안되며, 저장, 검색, 직렬화, 역직렬화 로직만을 가져야 한다고 한다.
+DB에서 데이터를 얻어서 Service나 Controller 등으로 보낼 때 사용
+엔티티를 DTO 형태로 변환한 후 사용
+
+Config - 
+
+회원가입 - 
+
+로그인 - 
+
+파일업로드 - 
+
+

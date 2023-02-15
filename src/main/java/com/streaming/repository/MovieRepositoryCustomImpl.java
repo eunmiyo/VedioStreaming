@@ -33,7 +33,8 @@ public class MovieRepositoryCustomImpl implements MovieRepositoryCustom {
 													movie.category, 
 													movie.openDate, 
 													movie.story, 
-													movieImg.imgUrl))
+													movieImg.imgUrl,
+													movieImg.videoUrl))
 									.from(movieImg)
 									.join(movieImg.movie, movie)
 									.orderBy(movie.id.desc())

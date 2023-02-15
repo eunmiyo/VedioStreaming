@@ -5,6 +5,36 @@
 <head>
 <meta charset="UTF-8">
 <title>Online Streaming</title>
+<th:block layout:fragment="script">
+	<script th:inline="javascript">
+/*         function page(page){
+            var searchQuery = $("#searchQuery").val();
+
+            location.href="/" + page + "?&searchQuery=" + searchQuery;
+        } */
+        
+        function video() {
+
+            var url = "/storagevideo";
+
+            $.ajax({
+                url      : url,
+                type     : "POST",
+                contentType : "application/json",
+                dataType : "json",
+                cache   : false,
+                error : function(jqXHR, status, error){
+                    if(jqXHR.status == '401'){
+                        location.href='/members/login';
+                        alert('로그인 후 이용해주세요');
+                    } else{
+                        alert(jqXHR.responseText);
+                    }
+                }
+            });            
+		}
+	</script>
+</th:block>
 
 <!-- 사용자 CSS 추가 -->
 <th:block layout:fragment="css">
@@ -44,6 +74,7 @@
                   <img src="/images/clock.png" alt="clock" /> 12:00
                 </li>
               </ul>
+
               <div class="hero__btn">
                 <a
                   data-fancybox=""
@@ -51,10 +82,11 @@
                   data-height="360"
                   data-small-btn="true"
                   class="btn btn-outline"
-                  href="https://youtu.be/fk8vvmHIWAA"
+                  href="#"
                   >Watch now
                 </a>
               </div>
+
             </div>
           </div>
         </div>
@@ -92,13 +124,13 @@
                    <div class="col-lg-4 col-md-6 col-sm-6">
 					<div class="blog__post text-center">
                             <div class="blog__image">
-                            	<a th:href="'/movie/' + ${movie.id}" class="text-dark">
+                            	<!-- <a th:href="'/movie/' + ${movie.id}" class="text-dark"> -->
                                 <img th:src="${movie.imgUrl}" th:alt="${movie.title}" />
                                 <div class="blog__overlay">
                                     <div class="ribbon">[[${movie.openDate}]]</div>
                                     <div class="blog__meta">
                                         <p>[[${movie.category}]]</p>
-                                        <a href="#"><i class="far fa-heart"></i></a>
+                                        <!-- <a href=""><i class="far fa-heart"></i></a> -->
                                     </div>
                                 </div>
                             </div>
@@ -106,7 +138,7 @@
                                 <h4 class="title"><a th:href="blog-single.html">[[${movie.title}]]</a></h4>
                                 <p class="content">[[${movie.story}]]</p>
                                 <div class="blog__btn">
-                                    <a th:href="blog-single.html" class="btn btn-primary">영화보기</a>
+                                    <a th:href="@{${movie.videoUrl}}" class="btn btn-primary" onclick="video()">영화보기</a>
                                 </div>
                             </div>
                         </div>
@@ -118,25 +150,25 @@
           </div>
         </div>
       </div>
-      
        <!-- pagination start  -->
             <nav class="pagination__wrapper" th:with="start=${(movies.number/maxPage)*maxPage + 1}
 			,end=(${(movies.totalPages == 0) ? 1 : (start + (maxPage - 1) < movies.totalPages ? start + (maxPage - 1) : movies.totalPages)})"
 			aria-label="Page navigation example">
             <ul class="pagination">
                 <li class="pagination__item"  th:classappend="${movies.first}?'disabled'">
-                  <a class="page-link" th:href="@{'/' + '&page=' + ${movies.number-1}}"> < </a>
+                  <a class="page-link" th:href="@{'/' + '?page=' + ${movies.number-1}}"> 이전 </a>
                 </li>
-                <li class="pagination__item active" th:each="page: ${#numbers.sequence(start, end)}"
+                <li class="pagination__item" th:each="page: ${#numbers.sequence(start, end)}"
 					th:classappend="${movies.number eq page-1}?'active':''">
-                  <a class="page-link" th:href="@{'/' +'&page=' + ${page-1}}">[[${page}]]</a>
+                  <a class="page-link" th:href="@{'/' +'?page=' + ${page-1}}">[[${page}]]</a>
                 </li>
                 <li class="pagination__item" th:classappend="${movies.last}?'disabled'">
-                  <a class="page-link" th:href="@{'/' + '&page=' + ${movies.number+1}}"> > </a>
+                  <a class="page-link" th:href="@{'/' + '?page=' + ${movies.number+1}}"> 다음 </a>
                 </li>
               </ul>
             </nav>
-            <!-- pagination end -->
+       <!-- pagination end -->
+       <!-- url구조 -->
 	
     </section>
     <!-- Movies Section End -->

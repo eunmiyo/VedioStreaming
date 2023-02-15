@@ -35,8 +35,8 @@ public class MovieImgService {
 		//전달된 이미지 파일이 없는 경우
 		String imgFileName = uploadFile(movieImgLocation, imgFile);
 		
-		movieImg.updateMovieVideo(videoFileName, videoFileName, "/storage/"+videoFileName);
-		movieImg.updateMovieImg(imgFileName, imgFileName, "/storage/"+imgFileName);
+		movieImg.updateMovieVideo(videoFileName, videoFileName, "/storagevideo/"+videoFileName);
+		movieImg.updateMovieImg(imgFileName, imgFileName, "/storageimg/"+imgFileName);                                                                                                                                        
 		
 		movieImgRepository.save(movieImg);
 	}

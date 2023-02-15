@@ -53,6 +53,7 @@ public class UserInfoController {
 		try {
 			UserInfo userInfo = UserInfo.createUserInfo(userInfoDto, passwordEncoder);
 			userInfoService.saveUser(userInfo);
+			model.addAttribute("errorMessage", "회원이 되신 걸 축하드려요!!");
 			
 		} catch(IllegalStateException e) {
 			model.addAttribute("errorMessage", e.getMessage());
@@ -116,6 +117,7 @@ public class UserInfoController {
 
 	//회원탈퇴
 	@PostMapping("/deleteUser")
+	//@RequestParam("가져올 데이터의 이름") [데이터타입] [가져온데이터를 담을 변수]
 	public String deleteUser(@RequestParam(value="email") String email, @RequestParam(value="password") String password, Model model) {
 		try {
 			//회원 정보를 삭제한다

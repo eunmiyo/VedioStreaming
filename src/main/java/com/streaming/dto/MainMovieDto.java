@@ -14,14 +14,16 @@ public class MainMovieDto {
 	private String openDate;
 	private String story;
 	private String imgUrl;
+	private String videoUrl;
 	
 	@QueryProjection
-	public MainMovieDto(Long id, String title, String category, String openDate, String story, String imgUrl) {
+	public MainMovieDto(Long id, String title, String category, String openDate, String story, String imgUrl, String videoUrl) {
 		this.id = id;
 		this.title = title;
 		this.category = category;
 		this.openDate = openDate;
 		this.story = story;
 		this.imgUrl = imgUrl;
+		this.videoUrl = videoUrl;
 	}
 }
