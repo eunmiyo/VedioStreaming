@@ -14,10 +14,13 @@
 		if(errorMessage != null) {
 			alert(errorMessage);
 		}
+		
+		bindDomEvent();
+		bindDomEvent2();
 	});
 		//파일 첨부시 이미지 파일인지 검사를 한다.
 		function bindDomEvent(){
-            $(".custom-file-input").on("change", function() {
+            $(".custom-file-input").off().on("change", function() {
                 var fileName = $(this).val().split("\\").pop();  //이미지 파일명
                 var fileExt = fileName.substring(fileName.lastIndexOf(".")+1); // 확장자 추출
                 fileExt = fileExt.toLowerCase(); //소문자 변환
@@ -30,6 +33,22 @@
                 $(this).siblings(".custom-file-label").html(fileName);
             });
         }
+		
+		function bindDomEvent2(){
+            $(".custom-file-input2").off().on("change", function() {
+                var fileName = $(this).val().split("\\").pop();  //이미지 파일명
+                var fileExt = fileName.substring(fileName.lastIndexOf(".")+1); // 확장자 추출
+                fileExt = fileExt.toLowerCase(); //소문자 변환
+
+                if(fileExt != "mp4" && fileExt != "avi" && fileExt != "mov" && fileExt != "wmv" && fileExt != "flv"){
+                    alert("동영상 파일만 등록이 가능합니다.");
+                    return;
+                }
+
+                $(this).siblings(".custom-file-label").html(fileName);
+            });
+        }
+		
 	</script>
 	
 	<script type="text/javascript">
@@ -168,7 +187,7 @@ $(document).ready(function(){
 			
 						<div class="fileRegiBtn">
 							<label for="videoFileUp">파일 열기</label>
-							<input type="file" id="videoFileUp" name="videoFile">
+							<input class="custom-file-input2" type="file" id="videoFileUp" name="videoFile">
 						</div>				
 				</div>	
 						
