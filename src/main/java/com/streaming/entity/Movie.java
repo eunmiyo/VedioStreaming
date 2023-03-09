@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.Table;
 
 import com.streaming.dto.MovieFormDto;
@@ -32,8 +31,7 @@ public class Movie extends BaseEntity {
 	@Column(nullable=false)
 	private String category; //장르
 	
-	@Lob //대형데이터 저장
-	@Column(nullable=false)
+	@Column(nullable = false, columnDefinition = "LONGTEXT") //대형데이터 저장
 	private String story; //줄거리
 	
 	@Column(nullable=false)

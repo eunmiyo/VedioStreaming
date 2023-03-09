@@ -11,10 +11,12 @@
 	<groupId>com.example</groupId>
 	<artifactId>streaming</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
 	<name>streaming</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>1.8</java.version>
+		<maven.test.skip>true</maven.test.skip>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -100,6 +102,13 @@
      		<artifactId>modelmapper</artifactId>
      		<version>3.1.0</version>
 		</dependency>
+		
+		<dependency>
+    		<groupId>org.springframework.boot</groupId>
+      		<artifactId>spring-boot-starter-tomcat</artifactId>
+      		<scope>provided</scope>
+		</dependency>
+
 		
 	</dependencies>	
 
